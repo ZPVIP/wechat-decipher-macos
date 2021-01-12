@@ -6,6 +6,10 @@ This toolkit consists of three DTrace scripts for messing with WeChat.app on mac
 2. `dbcracker.d` reveals paths to the encrypted SQLite3 databases and their credentials. Since it can only capture secrets when WeChat.app opens these files, you need to either login or trigger a backup while the script is running. Simply copy & paste the script output to invoke [SQLCipher](https://github.com/sqlcipher/sqlcipher) and supply the respective `PRAGMA`s.
 3. `xlogger.d` prints the log messages going to `/Users/$USER/Library/Containers/com.tencent.xinWeChat/Data/Library/Caches/com.tencent.xinWeChat/2.0b4.0.9/log/*.xlog`.
 
+## Dependencies
+
+Since `dtrace(1)` is pre-installed on macOS, no dependencies are required to run the scripts. However, you need [SQLCipher](https://github.com/sqlcipher/sqlcipher) to inspect the databases discovered by `dbcracker.d`.
+
 ## Usage
 
 Launch WeChat and run
@@ -17,6 +21,8 @@ sudo $DECIPHER_SCRIPT -p $(pgrep -a -f '^/Applications/WeChat.app/Contents/MacOS
 replace `$DECIPHER_SCRIPT` with `./dbcracker.d`, `./eavesdropper.d`, or `./xlogger.d`.
 
 ## Version Information
+
+The production of these scripts involved an excess amount of guesswork and wishful thinking, but at least it works on my machine :)
 
 ```
 Device Type: MacBookPro14,1
