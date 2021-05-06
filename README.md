@@ -7,8 +7,7 @@ This project is grouped into three directories
     + `dbcracker.d` reveals locations of the encrypted SQLite3 databases and their credentials. *Since it can only capture secrets when WeChat.app opens these files, you need to perform a login while the script is running.* Simply copy & paste the script output to invoke [SQLCipher](https://github.com/sqlcipher/sqlcipher) and supply the respective `PRAGMA`s.
 + In `pcbakchat/` you can find scripts to parse WeChat's backup files.
     + `gather.d` gathers several pieces of intel required to decrypt the backup.
-+ In `devel/` resides utilities for further reverse engineering. They are intended for developers only, and the end-users of this project are not expected to use them.
-    + `backup.md` gives an overview of the backup process (from iOS to macOS).
++ In `devel/` resides utilities for further reverse engineering. They are intended for hackers only, and the end-users of this project are not expected to use them.
     + `xlogger.d` prints the log messages going to `/Users/$USER/Library/Containers/com.tencent.xinWeChat/Data/Library/Caches/com.tencent.xinWeChat/2.0b4.0.9/log/*.xlog`. I made this script [destructive](http://dtrace.org/guide/chp-actsub.html#chp-actsub-4) to overwrite the global variable [`gs_level`](https://github.com/Tencent/mars/blob/master/mars/comm/xlogger/xloggerbase.c#L93).
     + `protobuf_config.py` describes the protobuf format used by the backup files for [protobuf-inspector](https://github.com/mildsunrise/protobuf-inspector).
     + `__handlers__/` contains some handlers to be used with `frida-trace`.
@@ -34,7 +33,7 @@ The stuff in `pcbakchat/` is a little involved. See `usage.md` for more details.
 
 ## Will Tencent ban my WeChat account?
 
-Hopefully not. Most processing is done offline on the macOS client, and the overhead of DTrace should be neglectable.
+Hopefully not. Most processing is done offline on the macOS client, and the overhead of DTrace should be negligible, so there is little chance they will catch you.
 
 ## Version Information
 
